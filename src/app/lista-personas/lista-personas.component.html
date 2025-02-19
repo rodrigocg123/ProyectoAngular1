@@ -4,6 +4,25 @@
     <td>{{persona.nombre}}</td>
     <td>{{persona.apellidos}}</td>
     <td>{{persona.edad}}</td>
-</tr>
 
+</tr>
 </table>
+<form>
+
+    <p>
+        <input type="text" name="nombre" [(ngModel)]="personaInsertar.nombre"/>
+    </p>
+
+    <p>
+        <input type="text" name="apellidos" [(ngModel)]="personaInsertar.apellidos"/>
+    </p>
+
+    <p>
+        <input type="number" name="edad" [(ngModel)]="personaInsertar.edad"/>
+    </p>
+
+    <p>
+        <input type="button" value="Insertar" (click)="insertar()"/>
+    </p>
+
+</form>
