@@ -25,5 +25,10 @@ export class PersonaRepositoryService {
 
     this.listaPersonas.push(persona);
   }
+
+  public filtrarNombre(nombre:string):Persona[]{
+
+    return this.listaPersonas.filter((p)=>p.nombre.startsWith(nombre));
+  }
   
 }
