@@ -6,6 +6,11 @@ import { Persona } from './persona';
 })
 export class PersonaRepositoryService {
 
+  public borrar(nombre: string) {
+   let indice=this.listaPersonas.findIndex((p)=>p.nombre==nombre);
+   this.listaPersonas.splice(indice,1);
+  }
+
   listaPersonas: Persona[] = [];
 
   constructor() {

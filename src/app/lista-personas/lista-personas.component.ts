@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { Component } from '@angular/core';
 import { Persona } from '../persona';
 import { NgFor } from '@angular/common';
 import { PersonaRepositoryService } from '../persona-repository.service';
@@ -11,24 +11,54 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './lista-personas.component.css'
 })
 export class ListaPersonasComponent {
+
   filtroNombre: string = "";
   listaPersonas: Persona[] = [];
   personaInsertar: Persona = {} as Persona;
+  finDeLista: boolean = false;
 
   constructor(private personaRepository: PersonaRepositoryService) {
 
+
     this.listaPersonas = personaRepository.BuscarTodos();
   }
+
   insertar() {
-    //spread operator
+    //objeto personainsertar 
     this.personaRepository.insertar({ ...this.personaInsertar });
   }
+
   filtrar() {
-    this.listaPersonas = this.personaRepository.filtrarNombre(this.filtroNombre);
+
+    if (this.filtroNombre != "") {
+      this.listaPersonas = this.personaRepository.filtrarNombre(this.filtroNombre);
+    } else {
+      this.listaPersonas = this.personaRepository.BuscarTodos();
+    }
+    console.log(this.finDeLista);
+    if (this.listaPersonas.length == 0) {
+      this.finDeLista = true;
+    } else {
+      this.finDeLista = false;
+    }
   }
-  borrar(nombre:string){
-    // this.listaPersonas.filter((p)=>!p.nombre.startsWith(nombre));  
-    let indice=this.listaPersonas.findIndex((p)=>p.nombre==nombre);
-    this.listaPersonas.splice(indice,1);
+  //metodo de borrar del componente
+  borrar(nombre: string) {
+    this.personaRepository.borrar(nombre);
+    this.listaPersonas = this.personaRepository.BuscarTodos();
+    this.avisoListaVacia();
   }
+  avisoListaVacia() {
+    if (this.listaPersonas.length == 0) {
+      this.finDeLista = true;
+    } else {
+      this.finDeLista = false;
+    }
+  }
+
+  mensajeFinTabla() {
+
+
+  }
+
 }
