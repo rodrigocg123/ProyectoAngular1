@@ -1,27 +1,48 @@
-<input type="text" name="filtro" [(ngModel)]="filtroNombre"/>
-<input type="button" value="filtrar" (click)="filtrar()"/>
-<table>
-<tr *ngFor="let persona of listaPersonas">
-    <td>{{persona.nombre}}</td>
-    <td>{{persona.apellidos}}</td>
-    <td>{{persona.edad}}</td>
-    <td><input type="button" value="borrar" (click)="borrar(persona.nombre)"/></td>
-</tr>
-<tr *ngIf="finDeLista">
-    <td colspan="3">no hay mas</td>
-</tr>
-</table>
-<form>
-    <p>
-        <input type="text" name="nombre" [(ngModel)]="personaInsertar.nombre"/>
-    </p>
-    <p>
-        <input type="text" name="apellidos" [(ngModel)]="personaInsertar.apellidos"/>
-    </p>
-    <p>
-        <input type="number" name="edad" [(ngModel)]="personaInsertar.edad"/>
-    </p>
-    <p>
-        <input type="button" value="Insertar" (click)="insertar()"/>
-    </p>
-</form>
+<header class="cabeceraPrincipal">
+    <h1>F.C. CALASANZ</h1>
+    <nav>
+        <a href="#home">Inicio</a>
+        <a href="#about">Sobre Nosotros</a>
+        <a href="#services">Servicios</a>
+        <a href="#contact">Contacto</a>
+      </nav>
+</header>
+
+<body>
+    <input type="text" name="filtro" [(ngModel)]="filtroNombre" />
+    <input type="button" value="FILTRAR" (click)="filtrar()" class="botonFiltrar" />
+    <table class="listaPersonas">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Edad</th>
+                <th>Borrar</th>
+            </tr>
+        </thead>
+        <tr *ngFor="let persona of listaPersonas">
+            <td>{{persona.nombre}}</td>
+            <td>{{persona.apellidos}}</td>
+            <td>{{persona.edad}}</td>
+            <td><input type="button" value="BORRAR" (click)="borrar(persona.nombre)" /></td>
+        </tr>
+        <tr *ngIf="finDeLista">
+            <td colspan="3">no hay mas</td>
+        </tr>
+    </table>
+    <form class="formularioNuevo">
+        <header class="tituloFormulario"> FORMULARIO NUEVOS SOCIOS</header>
+        <p>
+            Nombre:<input type="text" name="nombre" [(ngModel)]="personaInsertar.nombre" />
+        </p>
+        <p>
+            Apellidos:<input type="text" name="apellidos" [(ngModel)]="personaInsertar.apellidos" />
+        </p>
+        <p>
+            Edad:<input type="number" name="edad" [(ngModel)]="personaInsertar.edad" />
+        </p>
+        <p>
+            <input type="button" value="INSERTAR" (click)="insertar()" class="botonInsertar" />
+        </p>
+    </form>
+</body>
